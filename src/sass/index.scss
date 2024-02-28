@@ -20,6 +20,9 @@ body {
   display: flex;
   flex-direction: column;
 }
+.hidden {
+  display: none;
+}
 .search-wrapper {
   display: flex;
   justify-content: center;
