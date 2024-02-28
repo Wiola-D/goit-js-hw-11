@@ -18,7 +18,7 @@ var lightbox = new SimpleLightbox('.gallery a', {
 
 let currentPage = 1;
 
-async function fetchData(page) {
+async function fetchData(name, page) {
   try {
     const response = await axios.get(
       `https:pixabay.com/api/?key=42471477-c4305623f815b95e7b6c9543d&q=${input.value}&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=${page}`
@@ -26,7 +26,7 @@ async function fetchData(page) {
 
     const photos = await response.data;
     if (photos.hits.length === 0) {
-      loadBtn.classList.add = 'hidden';
+      loadBtn.classList.add('hidden');
       Notiflix.Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.'
       );
@@ -51,6 +51,10 @@ const checkResults = photos => {
     Notiflix.Notify.info(
       "We're sorry, but you've reached the end of search results."
     );
+  } else {
+    if (currentPage === 1) {
+      Notiflix.Notify.success(`"Hooray! We found ${photos.totalHits} images."`);
+    }
   }
 };
 
@@ -83,6 +87,7 @@ searchForm.addEventListener('submit', event => {
     gallery.innerHTML = '';
   } else {
     gallery.innerHTML = '';
+    currentPage = 1;
     fetchData();
   }
 });
