@@ -18,7 +18,7 @@ var lightbox = new SimpleLightbox('.gallery a', {
 
 let currentPage = 1;
 
-async function fetchData(name, page) {
+async function fetchData(page) {
   try {
     const response = await axios.get(
       `https:pixabay.com/api/?key=42471477-c4305623f815b95e7b6c9543d&q=${input.value}&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=${page}`
