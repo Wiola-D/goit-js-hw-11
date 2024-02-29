@@ -47,12 +47,13 @@ const checkResults = photos => {
     if (currentPage === 1) {
       Notiflix.Notify.success(`"Hooray! We found ${photos.totalHits} images."`);
     }
-    loadBtn.style.display = 'none';
+    loadBtn.classList.add('hidden');
     Notiflix.Notify.info(
       "We're sorry, but you've reached the end of search results."
     );
   } else {
     if (currentPage === 1) {
+      loadBtn.classList.remove('hidden');
       Notiflix.Notify.success(`"Hooray! We found ${photos.totalHits} images."`);
     }
   }
