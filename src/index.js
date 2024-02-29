@@ -18,7 +18,7 @@ var lightbox = new SimpleLightbox('.gallery a', {
 
 let currentPage = 1;
 
-async function fetchData(page) {
+async function fetchData(page = 1) {
   try {
     const response = await axios.get(
       `https:pixabay.com/api/?key=42471477-c4305623f815b95e7b6c9543d&q=${input.value}&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=${page}`
@@ -86,8 +86,8 @@ searchForm.addEventListener('submit', event => {
     Notiflix.Notify.info('Please enter a search query.');
     gallery.innerHTML = '';
   } else {
-    gallery.innerHTML = '';
     currentPage = 1;
+    gallery.innerHTML = '';
     fetchData();
   }
 });
