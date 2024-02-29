@@ -1,5 +1,4 @@
 const { default: axios } = require('axios');
-import _throttle from 'lodash.throttle';
 import Notiflix from 'notiflix';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
@@ -20,8 +19,9 @@ let currentPage = 1;
 
 async function fetchData(page = 1) {
   try {
+    const inputValue = input.value.split(' ').join('+');
     const response = await axios.get(
-      `https:pixabay.com/api/?key=42471477-c4305623f815b95e7b6c9543d&q=${input.value}&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=${page}`
+      `https://pixabay.com/api/?key=42471477-c4305623f815b95e7b6c9543d&q=${inputValue}&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=${page}`
     );
 
     const photos = await response.data;
